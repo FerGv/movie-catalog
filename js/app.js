@@ -26,8 +26,16 @@ const searchMovie = async () => {
       return;
     }
 
-    results.forEach(({ Title: title }) => {
-      titleList.insertAdjacentHTML('beforeend', `<li>${title}</li>`);
+    results.forEach(({ Poster: poster, Title: title }) => {
+      titleList.insertAdjacentHTML(
+        'beforeend',
+        `
+          <li>
+            ${title}
+            <img src="${poster}" alt="${title}" />
+          </li>
+        `,
+      );
     });
   } catch (error) {
     console.error(error);
