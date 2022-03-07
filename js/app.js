@@ -42,4 +42,4 @@ const searchMovie = async () => {
   }
 };
 
-searchInput.addEventListener('keyup', searchMovie);
+searchInput.addEventListener('keyup', _.debounce(searchMovie, 200));
