@@ -1,4 +1,4 @@
-const API_URL = 'http://www.omdbapi.com';
+const API_URL = new URL('http://www.omdbapi.com');
 const API_KEY = 'af5566e9';
 
 const searchInput = document.querySelector('#search');
@@ -15,7 +15,9 @@ const searchMovie = async () => {
       return;
     }
 
-    const response = await fetch(`${API_URL}?apikey=${API_KEY}&s=${search}`);
+    const params = new URLSearchParams({ apikey: API_KEY, s: search });
+    API_URL.search = params.toString();
+    const response = await fetch(API_URL);
     const json = await response.json();
     const { Search: results } = json;
 
